@@ -23,7 +23,6 @@ public class PicturesHandler : MonoBehaviour
 		_loader = loader;
 
 		_pictureShower = pictureShower;
-		_pictureShower.SetPicture(_loader.GetPictures()[_idSelected].Sprite);
 
 		_buttonsSwitch = buttonsSwitch;
 		_buttonsSwitch.ToList().ForEach(b => b.OnSwitchPicture += SwitchPicture);
@@ -34,14 +33,22 @@ public class PicturesHandler : MonoBehaviour
 		if(vector)
 		{
 			_idSelected++;
-			if (_idSelected >= _loader.GetPictures().Count) _idSelected = _loader.GetPictures().Count - 1;
+			if (_idSelected >= _loader.GetPictures().Count) 
+			{
+				_idSelected = _loader.GetPictures().Count;
+				return;
+			}
 
 			_pictureShower.SetPicture(_loader.GetPictures()[_idSelected].Sprite);
 		}
 		else
 		{
 			_idSelected--;
-			if (_idSelected < 0) _idSelected = default;
+			if (_idSelected < 0)
+			{
+				_idSelected = default;
+				return;
+			}
 
 			_pictureShower.SetPicture(_loader.GetPictures()[_idSelected].Sprite);
 		}

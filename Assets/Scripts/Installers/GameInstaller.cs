@@ -3,8 +3,9 @@ using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
-	[SerializeField] private PictureShower _pictureShower;
+	//[SerializeField] private PictureShower _pictureShower;
 	[SerializeField] private SwitchButton[] _buttonsSwitch;
+	public Configuration _config;
     public override void InstallBindings()
 	{
 		BindingLoaderPicture();
@@ -13,6 +14,8 @@ public class GameInstaller : MonoInstaller
 			Bind<SwitchButton[]>().
 			FromInstance(_buttonsSwitch).
 			AsSingle();
+		Container.Bind<IInitializable>().To<TestUpdate>().AsSingle();
+		Container.BindInstance(_config._settingsTest);
 	}
 	private void BindingLoaderPicture()
 	{
@@ -24,9 +27,7 @@ public class GameInstaller : MonoInstaller
 	}
 	private void BindingPictureShower()
 	{
-		Container
-			.Bind<PictureShower>()
-			.FromInstance(_pictureShower)
-			.AsSingle();
+		/*Container
+			.BindInstance(typeof(PictureShower)).AsSingle();*/
 	}
 }

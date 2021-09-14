@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06590acbcf97b504d870cec72850f813, type: 3}
-  m_Name: Test1
+  m_Script: {fileID: 11500000, guid: 50703782c70fdfe45b010780910c1c95, type: 3}
+  m_Name: picture
   m_EditorClassIdentifier: 
-  _id: 1
-  _name: Test1
-  _category: 1
-  _sprite: {fileID: 21300000, guid: 37225b2079388ad4aa68ab2490986055, type: 3}
+  _settingsTest:
+    test: ddfbdfb
