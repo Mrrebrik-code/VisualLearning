@@ -13,12 +13,18 @@ public class PicturesHandler : MonoBehaviour
 	{
 		_idSelected = default;
 	}
+	private void OnDestroy()
+	{
+		_buttonsSwitch.ToList().ForEach(b => b.OnSwitchPicture -= SwitchPicture);
+	}
 	[Inject]
 	public void Init(ILoaderPictures loader, PictureShower pictureShower, SwitchButton[] buttonsSwitch)
 	{
 		_loader = loader;
+
 		_pictureShower = pictureShower;
 		_pictureShower.SetPicture(_loader.GetPictures()[_idSelected].Sprite);
+
 		_buttonsSwitch = buttonsSwitch;
 		_buttonsSwitch.ToList().ForEach(b => b.OnSwitchPicture += SwitchPicture);
 	}
@@ -29,12 +35,14 @@ public class PicturesHandler : MonoBehaviour
 		{
 			_idSelected++;
 			if (_idSelected >= _loader.GetPictures().Count) _idSelected = _loader.GetPictures().Count - 1;
+
 			_pictureShower.SetPicture(_loader.GetPictures()[_idSelected].Sprite);
 		}
 		else
 		{
 			_idSelected--;
 			if (_idSelected < 0) _idSelected = default;
+
 			_pictureShower.SetPicture(_loader.GetPictures()[_idSelected].Sprite);
 		}
 	}
