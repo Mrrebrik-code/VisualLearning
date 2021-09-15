@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "picture", menuName = "Pictures/picture")]
+[CreateAssetMenu(fileName = "picture", menuName = "CoreGame/Pictures/picture", order = 2)]
 public class Picture : ScriptableObject
 {
 	[SerializeField] private string _id;

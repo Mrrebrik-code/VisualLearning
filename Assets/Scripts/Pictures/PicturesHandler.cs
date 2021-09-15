@@ -12,12 +12,12 @@ public class PicturesHandler : MonoBehaviour
 	private int _idSelected;
 
 	[Inject]
-	public void Init(ILoaderPictures loader, PictureShower pictureShower, SwitchButton[] buttonsSwitch, AudioHandler audioHandler)
+	public void Init(ILoaderPictures loader, PictureShower pictureShower, UserInterfaceHandler ui, AudioHandler audioHandler)
 	{
 		_loader = loader;
 		_pictureShower = pictureShower;
 
-		_buttonsSwitch = buttonsSwitch;
+		_buttonsSwitch = ui.SwitchButton;
 		_buttonsSwitch.ToList().ForEach(b => b.OnSwitchPicture += SwitchPicture);
 
 		_audioHandler = audioHandler;
