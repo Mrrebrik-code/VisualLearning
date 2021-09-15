@@ -18,6 +18,7 @@ public class PicturesHandler : MonoBehaviour
 		_pictureShower = pictureShower;
 
 		_buttonsSwitch = ui.SwitchButton;
+		_pictureShower.SetPicture(_loader.GetPictures()[_idSelected]);
 		_buttonsSwitch.ToList().ForEach(b => b.OnSwitchPicture += SwitchPicture);
 
 		_audioHandler = audioHandler;
@@ -42,7 +43,7 @@ public class PicturesHandler : MonoBehaviour
 				return;
 			}
 
-			_pictureShower.SetPicture(_loader.GetPictures()[_idSelected].Sprite);
+			_pictureShower.SetPicture(_loader.GetPictures()[_idSelected]);
 		}
 		else
 		{
@@ -53,7 +54,7 @@ public class PicturesHandler : MonoBehaviour
 				return;
 			}
 
-			_pictureShower.SetPicture(_loader.GetPictures()[_idSelected].Sprite);
+			_pictureShower.SetPicture(_loader.GetPictures()[_idSelected]);
 		}
 	}
 }
