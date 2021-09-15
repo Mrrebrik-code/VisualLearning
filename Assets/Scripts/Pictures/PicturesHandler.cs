@@ -8,7 +8,20 @@ public class PicturesHandler : MonoBehaviour
 	private ILoaderPictures _loader;
 	private PictureShower _pictureShower;
 	private SwitchButton[] _buttonsSwitch;
+	private AudioHandler _audioHandler;
 	private int _idSelected;
+
+	[Inject]
+	public void Init(ILoaderPictures loader, PictureShower pictureShower, SwitchButton[] buttonsSwitch, AudioHandler audioHandler)
+	{
+		_loader = loader;
+		_pictureShower = pictureShower;
+
+		_buttonsSwitch = buttonsSwitch;
+		_buttonsSwitch.ToList().ForEach(b => b.OnSwitchPicture += SwitchPicture);
+
+		_audioHandler = audioHandler;
+	}
 	private void Start()
 	{
 		_idSelected = default;
@@ -16,16 +29,6 @@ public class PicturesHandler : MonoBehaviour
 	private void OnDestroy()
 	{
 		_buttonsSwitch.ToList().ForEach(b => b.OnSwitchPicture -= SwitchPicture);
-	}
-	[Inject]
-	public void Init(ILoaderPictures loader, PictureShower pictureShower, SwitchButton[] buttonsSwitch)
-	{
-		_loader = loader;
-
-		_pictureShower = pictureShower;
-
-		_buttonsSwitch = buttonsSwitch;
-		_buttonsSwitch.ToList().ForEach(b => b.OnSwitchPicture += SwitchPicture);
 	}
 
 	private void SwitchPicture(bool vector)
